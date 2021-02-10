@@ -1,4 +1,4 @@
-from transformers import BertTokenizer
+from nltk.tokenize import word_tokenize
 import torch
 
 from glob import glob
@@ -8,7 +8,7 @@ from tqdm import tqdm
 import pickle
 
 
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+
 loc = 'data/corpus-webis-editorials-16/annotated-txt/split-for-evaluation-final'
 train = f'{loc}/training'
 dev = f'{loc}/validation'
@@ -53,7 +53,7 @@ for name in sets:
                 c_tag = []
                 stopped = True
             else:
-                tks = tokenizer.tokenize(t)
+                tks = word_tokenize(t)
                 if stopped:
                     if l != 'no-unit':
                         c_tag += ['B']
